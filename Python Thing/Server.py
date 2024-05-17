@@ -1,13 +1,14 @@
 import socket
 import threading
 
-#Server Thingy
+# Server settings
 HOST = '127.0.0.1'
-PORT = 12435
+PORT = 12345
 
+# List to keep track of connected clients
 clients = []
 
-def Broadcast(message, client_socket):
+def broadcast(message, client_socket):
     for client in clients:
         if client != client_socket:
             try:
@@ -29,10 +30,10 @@ def handle_client(client_socket):
 
 def main():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind(HOST, PORT)
+    server.bind((HOST, PORT))
     server.listen()
 
-    print(f"Server running ono {HOST}:{PORT}")
+    print(f"Server running on {HOST}:{PORT}")
 
     while True:
         client_socket, client_address = server.accept()
@@ -43,4 +44,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
