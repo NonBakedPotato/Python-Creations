@@ -8,7 +8,7 @@ PORT = 12345
 # List to keep track of connected clients
 clients = []
 
-def broadcast(message, client_socket):
+def broadcast(message, client_socket=None):
     for client in clients:
         if client != client_socket:
             try:
@@ -34,6 +34,14 @@ def main():
     server.listen()
 
     print(f"Server running on {HOST}:{PORT}")
+
+    # Server can send messages
+    def server_messages():
+        while True:
+            message = input("Server: ")
+            broadcast(f"Server: {message}".encode('utf-8'))
+
+    threading.Thread(target=server_messages).start()
 
     while True:
         client_socket, client_address = server.accept()
