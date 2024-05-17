@@ -2,7 +2,7 @@ import socket
 import threading
 
 # Server settings
-HOST = '127.0.0.1'
+HOST = '192.168.209.242'
 PORT = 12345
 
 # List to keep track of connected clients

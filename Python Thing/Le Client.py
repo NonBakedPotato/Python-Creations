@@ -3,7 +3,7 @@ import threading
 import tkinter as tk
 
 # Client settings
-HOST = '127.0.0.1'  # Change this to the server's IP address if needed
+HOST = '192.168.209.242'  # Change this to the server's IP address if needed
 PORT = 12345  # Ensure this matches the server's port
 
 def receive_messages(client_socket, text_area):
