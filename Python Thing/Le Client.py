@@ -54,16 +54,21 @@ def main_interface(client_socket, root):
     receive_thread = threading.Thread(target=receive_messages, args=(client_socket, text_area))
     receive_thread.start()
 
-    
+def limit_size(*args):
+    value = name_entry.get()
+    if len(value) > max_length:
+        name_var.set(value[:max_length])
 
 def Login_Screen(root):
-    global login_frame
+    global login_frame, name_entry, max_length, name_var
     
     login_frame = tk.Frame(root)
     label = tk.Label(login_frame, text="Welcome Screen")
     label.pack(pady=15)
 
+    max_length = 12
     name_var = tk.StringVar()
+    name_var.trace("w", limit_size)
 
     name_entry = tk.Entry(login_frame, textvariable=name_var, width=25)
     name_entry.pack(pady=5)
